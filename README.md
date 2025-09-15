@@ -194,43 +194,39 @@
   const usernameInput = document.getElementById('username').value.trim();
   const passwordInput = document.getElementById('password').value.trim();
 
-  // ค้นหาผู้ใช้จากรายการ (รองรับตัวพิมพ์เล็ก/ใหญ่)
   const user = users.find(u =>
     u.username.toLowerCase() === usernameInput.toLowerCase() &&
     u.password === passwordInput
   );
 
   if (user) {
-  const loginContainer = document.getElementById('loginContainer');
-  
-  // ใส่ transition กับ container ทั้งหมด
-  loginContainer.style.transition = "all 0.8s ease";
-  loginContainer.style.transform = "translateX(-150%)";
-  loginContainer.style.opacity = "0";
+    const loginContainer = document.getElementById('loginContainer');
+    
+    loginContainer.style.transition = "all 0.8s ease";
+    loginContainer.style.transform = "translateX(-150%)";
+    loginContainer.style.opacity = "0";
 
-  setTimeout(() => {
-    loginContainer.style.display = 'none'; // ซ่อนหลัง animation
-     
-    const imageContainer = document.getElementById('imageContainer');
-    imageContainer.style.display = 'flex';
-    setTimeout(() => imageContainer.classList.add('show'), 50);
+    setTimeout(() => {
+      loginContainer.style.display = 'none';
 
-    document.getElementById('bottomRightBox').classList.add('hidden-bottom');
+      const imageContainer = document.getElementById('imageContainer');
+      imageContainer.style.display = 'flex';
+      setTimeout(() => imageContainer.classList.add('show'), 50);
 
-    const body = document.getElementById('pageBody');
-    body.style.backgroundImage = `url('${user.background}')`;
-    body.style.backgroundRepeat = "no-repeat";
-    body.style.backgroundSize = "cover";
-    body.style.backgroundPosition = "center";
+      document.getElementById('bottomRightBox').classList.add('hidden-bottom');
 
-    const imageBox = document.getElementById('imageBox');
-    imageBox.querySelector('h2').textContent = user.greeting;
-    imageBox.querySelector('img').src = user.image;
-  }, 800);
-}
+      const body = document.getElementById('pageBody');
+      body.style.backgroundImage = `url('${user.background}')`;
+      body.style.backgroundRepeat = "no-repeat";
+      body.style.backgroundSize = "cover";
+      body.style.backgroundPosition = "center";
+
+      const imageBox = document.getElementById('imageBox');
+      imageBox.querySelector('h2').textContent = user.greeting;
+      imageBox.querySelector('img').src = user.image;
+    }, 800);
 
   } else {
-    // แสดงกล่องแจ้งเตือน ❌
     document.getElementById('errorBox').classList.remove('hidden');
     }
   }
